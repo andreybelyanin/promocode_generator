@@ -8,6 +8,9 @@ from django.core.management import call_command
 
 
 def test_generate_promo_code_command():
+    """ Функция проверяющая количество сгенерированных кодов.
+    Созданная группа проверяется автоматически при сравнении 'if group == key:', т.к. key считывается уже в
+    обновленном файле """
     if os.path.exists(os.getcwd() + '/data_file.json'):
         with open('data_file.json') as file:
             data_before = json.load(file)
@@ -33,6 +36,7 @@ def test_generate_promo_code_command():
 
 
 def test_code_insistence():
+    """ Функция проверяет вывод команды, проверяющей наличие промокода в файле json """
     args = []
     opts = {}
     result = call_command('code_insistence', *args, **opts)
